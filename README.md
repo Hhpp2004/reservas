@@ -73,6 +73,4 @@ Para rodar os testes automatizados:
 
 Contribuições são bem-vindas! Siga as boas práticas de desenvolvimento e abra um Pull Request com sua sugestão.
 
-## Licença
 
-Este projeto está sob a licença MIT.
