@@ -39,7 +39,11 @@ public class ReservasService {
     // ok
     public List<Reserva> listaAll()
     {
-        return rr.findAll();
+        if (!rr.findAll().isEmpty()) {
+            return rr.findAll();
+        } else {
+            return null;
+        }
     }
 
     // ok
