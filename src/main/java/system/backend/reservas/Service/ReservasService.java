@@ -36,6 +36,7 @@ public class ReservasService {
         }
     }
 
+    // ok
     public List<Reserva> listaAll()
     {
         return rr.findAll();
@@ -53,12 +54,14 @@ public class ReservasService {
             if (mesa.getCapacidade() <= reserva.capacidade()) {
                 throw new Capacidade();
             }
-            Reserva reservado = reserva.createReserva();
-            reservado.setUser(user);
-            mesa.setStatus(StatusMesa.reservada);
-            reservado.setMesa(mesa);
-            reservado.setStatus(StatusReserva.ativo);
-            return rr.save(reservado).getId();
+            else {
+                Reserva reservado = reserva.createReserva();
+                reservado.setUser(user);
+                mesa.setStatus(StatusMesa.reservada);
+                reservado.setMesa(mesa);
+                reservado.setStatus(StatusReserva.ativo);
+                return rr.save(reservado).getId();
+            }
         }
         else
         {

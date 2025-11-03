@@ -32,7 +32,7 @@ public class User {
     private String nome;
     @Column(unique = true)
     private String email;
-    private String senha;    
+    private String senha;
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "tb_user_roles", joinColumns = @JoinColumn(name = "id_user"), inverseJoinColumns = @JoinColumn(name= "id_role"))
     private Set<Role> role;

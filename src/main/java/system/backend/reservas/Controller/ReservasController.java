@@ -65,6 +65,6 @@ public class ReservasController {
     {
         Optional<User> aux = ur.findById(Long.valueOf(user.getName()));
         boolean flag = rs.cancelar(id, aux.get());
-        return ResponseEntity.ok("Reserva cancelado: "+flag);
+        return ResponseEntity.ok("Reserva cancelado: " + flag);
     }
 }

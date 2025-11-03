@@ -15,6 +15,8 @@ import system.backend.reservas.Model.User;
 @Repository
 public interface ReservaRepository extends JpaRepository<Reserva, Long> {
     List<Reserva> findByUser(User user);
+
     Optional<Reserva> findByMesa(Mesas mesa);
+    
     boolean existsByMesaAndHorario(Mesas mesa, LocalDateTime horario);
 }
