@@ -54,14 +54,12 @@ public class ReservasService {
             if (mesa.getCapacidade() <= reserva.capacidade()) {
                 throw new Capacidade();
             }
-            else {
-                Reserva reservado = reserva.createReserva();
-                reservado.setUser(user);
-                mesa.setStatus(StatusMesa.reservada);
-                reservado.setMesa(mesa);
-                reservado.setStatus(StatusReserva.ativo);
-                return rr.save(reservado).getId();
-            }
+            Reserva reservado = reserva.createReserva();
+            reservado.setUser(user);
+            mesa.setStatus(StatusMesa.reservada);
+            reservado.setMesa(mesa);
+            reservado.setStatus(StatusReserva.ativo);
+            return rr.save(reservado).getId();
         }
         else
         {
