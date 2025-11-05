@@ -29,11 +29,7 @@ public class ReservasService {
     // ok
     public List<Reserva> lista(Optional<User> aux) {
         List<Reserva> lista = rr.findByUser(aux.get());
-        if (!lista.isEmpty()) {
-            return lista;
-        } else {
-            return null;
-        }
+        return lista;
     }
 
     // ok
