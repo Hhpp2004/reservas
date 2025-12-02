@@ -5,12 +5,14 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import lombok.AllArgsConstructor;
 import system.backend.reservas.DTO.ReservaDTO;
 import system.backend.reservas.Exception.Cancelamento;
 import system.backend.reservas.Exception.Capacidade;
 import system.backend.reservas.Exception.Inativo;
 import system.backend.reservas.Exception.NotFoundTable;
 import system.backend.reservas.Exception.Reservado;
+import system.backend.reservas.Exception.ReserveNotExists;
 import system.backend.reservas.Model.Mesas;
 import system.backend.reservas.Model.Reserva;
 import system.backend.reservas.Model.StatusMesa;
@@ -18,7 +20,6 @@ import system.backend.reservas.Model.StatusReserva;
 import system.backend.reservas.Model.User;
 import system.backend.reservas.Repository.MesaRepository;
 import system.backend.reservas.Repository.ReservaRepository;
-import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
@@ -40,6 +41,27 @@ public class ReservasService {
         } else {
             return null;
         }
+    }
+
+    public Boolean aprovacao(long id,boolean aprove) throws Exception
+    {
+        if(rr.existsById(id))
+        {
+            Optional<Reserva> lista = rr.findById(id);
+            Reserva reserva = lista.get();
+            if (aprove == true) {
+                reserva.setAprovado(aprove);
+                rr.save(reserva);
+                return true;
+            } else {
+                return false;
+            }
+        }
+        else
+        {
+            throw new ReserveNotExists();
+        }
+
     }
 
     // ok

@@ -1,4 +1,4 @@
-package system.backend.reservas.Exception;
+    package system.backend.reservas.Exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;

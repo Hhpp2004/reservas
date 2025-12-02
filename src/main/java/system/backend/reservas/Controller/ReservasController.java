@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import system.backend.reservas.DTO.ReservaDTO;
+import system.backend.reservas.Exception.NotAprove;
 import system.backend.reservas.Model.Reserva;
 import system.backend.reservas.Model.User;
 import system.backend.reservas.Repository.UserRepository;
@@ -58,6 +60,22 @@ public class ReservasController {
         long flag = rs.createReserva(novaReserva,aux.get());
         return ResponseEntity.ok("Reserva criada "+flag);
     }
+
+    @PatchMapping("/aprovar/{id}")
+    @PreAuthorize("hasAuthority('SCOPE_ADMIN')")
+    public ResponseEntity<String> aprovar(@RequestBody Boolean aprova, @RequestParam long id) throws Exception
+    {
+        Boolean aprovado = rs.aprovacao(id, aprova);
+        if(aprovado)
+        {
+            return ResponseEntity.ok("Reserva aprovada "+aprovado);
+        }
+        else
+        {
+            throw new NotAprove();
+        }
+    }
+
 
     @PatchMapping("/reserva/{id}/cancelar")
     @PreAuthorize("hasAuthority('SCOPE_CLIENTE')")
