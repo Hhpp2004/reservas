@@ -33,10 +33,12 @@ public class Reserva {
     @Column(name = "status_reserva")
     @Enumerated(EnumType.ORDINAL)
     private StatusReserva status;
+    private Boolean aprovado;
     
     public Reserva(Mesas mesa, LocalDateTime horario, StatusReserva status) {
         this.mesa = mesa;
         this.horario = horario;
         this.status = status;
+        this.aprovado = false;
     }
 }
